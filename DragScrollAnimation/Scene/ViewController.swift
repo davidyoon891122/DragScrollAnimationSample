@@ -24,12 +24,26 @@ class ViewController: UIViewController {
     }()
     
     private lazy var selectGroupButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .light)
+        let image = UIImage(systemName: "chevron.left", withConfiguration: imageConfig)
         
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        let button = UIButton(type: .roundedRect)
         
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.cornerRadius = 4
+        
+        button.tintColor = .label
+        button.setImage(image, for: .normal)
+
+        
+        button.layer.shadowColor = UIColor.systemBackground.cgColor
+        button.layer.shadowRadius = 7
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowOffset = .init(width: -5.0, height: 0.0)
+        
+        button.backgroundColor = .systemBackground
+        
         
         return button
     }()
@@ -55,7 +69,8 @@ private extension ViewController {
     
     func setupViews() {
         [
-            menuCollectionView
+            menuCollectionView,
+            selectGroupButton
         ]
             .forEach {
                 view.addSubview($0)
@@ -66,9 +81,18 @@ private extension ViewController {
         menuCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview().offset(offset)
-            $0.trailing.equalToSuperview().offset(-offset)
+            $0.trailing.equalTo(selectGroupButton.snp.leading)
             $0.height.equalTo(50.0)
         }
+        
+        selectGroupButton.snp.makeConstraints {
+            $0.centerY.equalTo(menuCollectionView)
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.width.height.equalTo(30)
+        }
+        
+        selectGroupButton.layoutIfNeeded()
+        selectGroupButton.layer.shadowPath = UIBezierPath(roundedRect: selectGroupButton.bounds, cornerRadius: selectGroupButton.layer.cornerRadius).cgPath
         
     }
     
