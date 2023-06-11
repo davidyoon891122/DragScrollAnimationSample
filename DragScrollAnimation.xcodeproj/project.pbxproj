@@ -15,6 +15,7 @@
 		492E0D6D2A31440800BF3BF6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 492E0D6C2A31440800BF3BF6 /* SnapKit */; };
 		492E0D6F2A31496500BF3BF6 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E0D6E2A31496500BF3BF6 /* MenuModel.swift */; };
 		492E0D712A3149AE00BF3BF6 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E0D702A3149AE00BF3BF6 /* MenuCollectionViewCell.swift */; };
+		492E0D732A318AAB00BF3BF6 /* MenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E0D722A318AAB00BF3BF6 /* MenuCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		492E0D632A31435100BF3BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492E0D6E2A31496500BF3BF6 /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		492E0D702A3149AE00BF3BF6 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		492E0D722A318AAB00BF3BF6 /* MenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				492E0D592A31435000BF3BF6 /* ViewController.swift */,
 				492E0D702A3149AE00BF3BF6 /* MenuCollectionViewCell.swift */,
+				492E0D722A318AAB00BF3BF6 /* MenuCollectionView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				492E0D6F2A31496500BF3BF6 /* MenuModel.swift in Sources */,
+				492E0D732A318AAB00BF3BF6 /* MenuCollectionView.swift in Sources */,
 				492E0D5A2A31435000BF3BF6 /* ViewController.swift in Sources */,
 				492E0D562A31435000BF3BF6 /* AppDelegate.swift in Sources */,
 				492E0D582A31435000BF3BF6 /* SceneDelegate.swift in Sources */,
