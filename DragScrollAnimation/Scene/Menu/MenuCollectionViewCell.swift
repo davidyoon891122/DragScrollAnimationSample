@@ -20,12 +20,32 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var underBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .label
+        
+        view.isHidden = true
+        
+        return view
+    }()
+    
+    override var isSelected: Bool {
+        didSet {
+            underBarView.isHidden = !isSelected
+            if isSelected {
+                menuTitleLabel.textColor = .label
+            } else {
+                menuTitleLabel.textColor = .gray
+            }
+        }
+    }
     
     private lazy var containerView: UIView = {
         let view = UIView()
         
         [
-            menuTitleLabel
+            menuTitleLabel,
+            underBarView
         ]
             .forEach {
                 view.addSubview($0)
@@ -33,6 +53,13 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         
         menuTitleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        underBarView.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(2)
         }
         
         return view

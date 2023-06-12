@@ -139,5 +139,9 @@ private extension MenuCollectionView {
         snapshot.appendSections([.main])
         snapshot.appendItems(MenuModel.menuItems)
         datasource.apply(snapshot, animatingDifferences: true)
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        
+        menuCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .right)
     }
 }

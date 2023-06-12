@@ -85,10 +85,18 @@
 			isa = PBXGroup;
 			children = (
 				492E0D592A31435000BF3BF6 /* ViewController.swift */,
+				49528F922A36B0F200C0A037 /* Menu */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		49528F922A36B0F200C0A037 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				492E0D702A3149AE00BF3BF6 /* MenuCollectionViewCell.swift */,
 				492E0D722A318AAB00BF3BF6 /* MenuCollectionView.swift */,
 			);
-			path = Scene;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
