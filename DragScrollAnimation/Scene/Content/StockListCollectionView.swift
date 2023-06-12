@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol StockListCollectionViewDelegate: AnyObject {
+    func didScroll(offset: CGPoint)
+}
+
 final class StockListCollectionView: UIView {
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -15,11 +19,14 @@ final class StockListCollectionView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.register(StockListCollectionViewCell.self, forCellWithReuseIdentifier: StockListCollectionViewCell.identifier)
+        collectionView.delegate = self
         
         return collectionView
     }()
     
     private var datasource: UICollectionViewDiffableDataSource<Int, StockInfoModel>!
+    
+    weak var delegate: StockListCollectionViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +37,13 @@ final class StockListCollectionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension StockListCollectionView: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.didScroll(offset: scrollView.contentOffset)
+    }
+    
 }
 
 private extension StockListCollectionView {

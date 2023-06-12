@@ -17,7 +17,7 @@ final class MainContentView: UIView {
     
     private lazy var containverView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orange
+        view.backgroundColor = .systemBackground
         [
             firstHeaderView,
             secondHeaderView,
@@ -37,6 +37,7 @@ final class MainContentView: UIView {
             $0.top.equalTo(firstHeaderView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
+            $0.height.equalTo(35.0)
         }
         
         stockListCollectionView.snp.makeConstraints {
@@ -45,6 +46,8 @@ final class MainContentView: UIView {
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+        
+        stockListCollectionView.delegate = self
         
         return view
     }()
@@ -57,6 +60,28 @@ final class MainContentView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension MainContentView: StockListCollectionViewDelegate {
+    func didScroll(offset: CGPoint) {
+        print("MainContentView offset: \(offset)")
+        let offsetY = offset.y
+        
+        if offsetY <= 0 {
+            secondHeaderView.alpha = 1
+            secondHeaderView.snp.updateConstraints {
+                $0.height.equalTo(35 - (offsetY / 3))
+            }
+        } else {
+            secondHeaderView.alpha = 1 - (offsetY / 100)
+            secondHeaderView.snp.updateConstraints {
+                $0.height.equalTo(35 - (offsetY / 3))
+            }
+        }
+        
+    }
+    
+    
 }
 
 private extension MainContentView {
