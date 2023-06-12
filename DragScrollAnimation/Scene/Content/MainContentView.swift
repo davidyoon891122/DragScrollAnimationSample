@@ -64,24 +64,23 @@ final class MainContentView: UIView {
 
 extension MainContentView: StockListCollectionViewDelegate {
     func didScroll(offset: CGPoint) {
-        print("MainContentView offset: \(offset)")
         let offsetY = offset.y
+        let height = 35 - (offsetY / 3)
+        
+        secondHeaderView.snp.updateConstraints {
+            $0.height.equalTo(height > 0 ? height : 0)
+        }
         
         if offsetY <= 0 {
             secondHeaderView.alpha = 1
             secondHeaderView.snp.updateConstraints {
-                $0.height.equalTo(35 - (offsetY / 3))
+                $0.height.equalTo(35.0)
             }
         } else {
-            secondHeaderView.alpha = 1 - (offsetY / 100)
-            secondHeaderView.snp.updateConstraints {
-                $0.height.equalTo(35 - (offsetY / 3))
-            }
+            let alpha = 1 - (offsetY / 100)
+            secondHeaderView.alpha = alpha > 0 ? alpha : 0
         }
-        
     }
-    
-    
 }
 
 private extension MainContentView {
