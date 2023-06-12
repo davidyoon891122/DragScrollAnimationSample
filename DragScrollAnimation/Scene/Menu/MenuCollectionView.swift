@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+enum SectionType {
+    case main
+}
+
 final class MenuCollectionView: UIView {
     private lazy var menuCollectionView: UICollectionView = {
         let layout = createLayout()
@@ -110,12 +114,11 @@ private extension MenuCollectionView {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(50.0), heightDimension: .fractionalHeight(1.0)))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-            
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(1.0), heightDimension: .absolute(50.0)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(50.0), heightDimension: .absolute(50.0)), subitems: [item])
             
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuous
+
             return section
         })
         

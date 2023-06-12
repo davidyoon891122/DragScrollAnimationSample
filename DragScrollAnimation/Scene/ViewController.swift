@@ -8,12 +8,10 @@
 import UIKit
 import SnapKit
 
-enum SectionType {
-    case main
-}
-
 class ViewController: UIViewController {
-    private var menuCollectionView = MenuCollectionView()
+    private let menuCollectionView = MenuCollectionView()
+    
+    private let mainContentView = MainContentView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +31,8 @@ private extension ViewController {
     
     func setupViews() {
         [
-            menuCollectionView
+            menuCollectionView,
+            mainContentView
         ]
             .forEach {
                 view.addSubview($0)
@@ -43,6 +42,13 @@ private extension ViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
+        }
+        
+        mainContentView.snp.makeConstraints {
+            $0.top.equalTo(menuCollectionView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
